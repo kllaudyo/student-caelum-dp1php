@@ -6,14 +6,13 @@
  * Time: 21:39
  */
 
-    require_once "Orcamento.php";
-    require_once "Imposto.php";
-    require_once "CalculadoraImpostos.php";
-    require_once "ICMS.php";
-    require_once "ISS.php";
-    require_once "IPI.php";
+    function autoload($class){
+        include "{$class}.php";
+    }
 
-    $reforma = new Orcamento(500);
+    spl_autoload_register("autoload");
+
+    $reforma = new Orcamento(5000);
 
     $calculadora = new CalculadoraImpostos();
 
@@ -26,3 +25,16 @@
     print "<br />";
 
     print $calculadora->calcula($reforma, new IPI());
+
+    print "<br />";
+
+    print $calculadora->calcula($reforma, new ICCC());
+
+    assert($calculadora->calcula(new Orcamento(100), new ICCC()), 5);
+
+    /*
+     * Strategy
+     * Cria uma interface que encapsula o comportamento. Ex: IImposto
+     * Cria uma classe para cada comportamento implementando a interface. Ex: ICMS, IPI, ISS
+     * Cria uma classe que executa o comportamento. Ex: CalculaImposto
+     */
