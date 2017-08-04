@@ -7,6 +7,7 @@
  */
 
     require_once "Orcamento.php";
+    require_once "Imposto.php";
     require_once "CalculadoraImpostos.php";
     require_once "ICMS.php";
     require_once "ISS.php";
@@ -24,4 +25,4 @@
 
     print "<br />";
 
-print $calculadora->calcula($reforma, new IPI());
+    print $calculadora->calcula($reforma, new IPI());
