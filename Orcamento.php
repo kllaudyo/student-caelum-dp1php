@@ -15,7 +15,8 @@ class Orcamento
         $this->valor = $valor;
     }
 
-    public function getValor(){
+    public function getValor()
+    {
         return $this->valor;
     }
 

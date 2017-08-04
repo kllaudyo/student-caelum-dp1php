@@ -13,8 +13,8 @@
 
     $calculadora = new CalculadoraImpostos();
 
-    echo $calculadora->calculaICMS($reforma);
+    echo $calculadora->calcula($reforma,"ICMS");
 
     echo "<br />";
 
-    print $calculadora->calculaISS($reforma);
+    print $calculadora->calcula($reforma, "ISS");
