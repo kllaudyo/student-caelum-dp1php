@@ -12,11 +12,13 @@ class CalculadoraDeDesconto
 
         $desconto5Itens = new Desconto5Itens();
         $desconto500Reais = new Desconto500Reais();
+        $descontoCasado = new DescontoPorVendaCasada();
         $desconto300Reais = new Desconto300Reais();
         $semDesconto = new SemDesconto();
 
         $desconto5Itens->setProximoDesconto($desconto500Reais);
-        $desconto500Reais->setProximoDesconto($desconto300Reais);
+        $desconto500Reais->setProximoDesconto($descontoCasado);
+        $descontoCasado->setProximoDesconto($desconto300Reais);
         $desconto300Reais->setProximoDesconto($semDesconto);
 
         $valorDesconto = $desconto5Itens->desconto($orcamento);
