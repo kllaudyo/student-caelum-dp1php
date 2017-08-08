@@ -12,7 +12,15 @@
 
     spl_autoload_register("autoload");
 
-    $reforma = new Orcamento(5000);
+
+    /*
+    * Strategy
+    * Cria uma interface que encapsula o comportamento. Ex: IImposto
+    * Cria uma classe para cada comportamento implementando a interface. Ex: ICMS, IPI, ISS
+    * Cria uma classe que executa o comportamento. Ex: CalculaImposto
+    */
+
+    $reforma = new Orcamento(300);
 
     $calculadora = new CalculadoraImpostos();
 
@@ -30,11 +38,15 @@
 
     print $calculadora->calcula($reforma, new ICCC());
 
-    assert($calculadora->calcula(new Orcamento(100), new ICCC()), 5);
+    print "<h1>Descontos</h1>";
 
-    /*
-     * Strategy
-     * Cria uma interface que encapsula o comportamento. Ex: IImposto
-     * Cria uma classe para cada comportamento implementando a interface. Ex: ICMS, IPI, ISS
-     * Cria uma classe que executa o comportamento. Ex: CalculaImposto
-     */
+    $calculadoraDesconto = new CalculadoraDeDesconto();
+
+    $reforma->addItem(new Item("tijolo", 251));
+    $reforma->addItem(new Item("cimento", 250));
+    $reforma->addItem(new Item("cimento", 250));
+    $reforma->addItem(new Item("cimento", 250));
+    $reforma->addItem(new Item("cimento", 250));
+
+    print "Desconto: " . $calculadoraDesconto->desconto($reforma);
+
