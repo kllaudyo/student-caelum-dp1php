@@ -10,14 +10,16 @@ class CalculadoraDeDesconto
 {
     public function desconto(Orcamento $orcamento){
 
-        $desconto = new Desconto5Itens();
-        $valorDesconto =  $desconto->desconto($orcamento);
+        $desconto5Itens = new Desconto5Itens();
+        $desconto500Reais = new Desconto500Reais();
+        $desconto300Reais = new Desconto300Reais();
+        $semDesconto = new SemDesconto();
 
-        if($valorDesconto===0){
-            $desconto = new Desconto500Reais();
-            $valorDesconto = $desconto->desconto($orcamento);
-        }
+        $desconto5Itens->setProximoDesconto($desconto500Reais);
+        $desconto500Reais->setProximoDesconto($desconto300Reais);
+        $desconto300Reais->setProximoDesconto($semDesconto);
 
+        $valorDesconto = $desconto5Itens->desconto($orcamento);
         return $valorDesconto;
 
     }

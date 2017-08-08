@@ -20,7 +20,7 @@
     * Cria uma classe que executa o comportamento. Ex: CalculaImposto
     */
 
-    $reforma = new Orcamento(501);
+    $reforma = new Orcamento(300);
 
     $calculadora = new CalculadoraImpostos();
 
@@ -40,6 +40,8 @@
 
 
     /*
+     * Chain of Responsability
+     * Monta uma cadeia que vai seguindo até se encontrar uma opção que satisfaça a necessidade
      *
      */
 
