@@ -10,18 +10,15 @@ class CalculadoraDeDesconto
 {
     public function desconto(Orcamento $orcamento){
 
-        if(count($orcamento->getItens())>=5)
-        {
-            return $orcamento->getValor() * 0.1;
+        $desconto = new Desconto5Itens();
+        $valorDesconto =  $desconto->desconto($orcamento);
+
+        if($valorDesconto===0){
+            $desconto = new Desconto500Reais();
+            $valorDesconto = $desconto->desconto($orcamento);
         }
-        else if($orcamento->getValor() > 500)
-        {
-            return $orcamento->getValor() * 0.05;
-        }
-        else
-        {
-            return 0;
-        }
+
+        return $valorDesconto;
 
     }
 }
