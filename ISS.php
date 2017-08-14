@@ -9,6 +9,9 @@
 class ISS implements IImposto
 {
     public function calcula(Orcamento $orcamento){
-        return $orcamento->getValor() * 0.06;
+        if($orcamento->getValor() > 300){
+            return $orcamento->getValor() * 0.15;
+        }
+        return $orcamento->getValor() * 0.1;
     }
 }

@@ -10,6 +10,10 @@ class ICMS implements IImposto
 {
     public function calcula(Orcamento $orcamento)
     {
-        return ($orcamento->getValor() * 0.05) + 50.00;
+        if($orcamento->getValor()>500){
+            return $orcamento->getValor() * 0.15;
+        }else {
+            return ($orcamento->getValor() * 0.05);
+        }
     }
 }

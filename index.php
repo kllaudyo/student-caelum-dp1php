@@ -20,7 +20,7 @@
     * Cria uma classe que executa o comportamento. Ex: CalculaImposto
     */
 
-    $reforma = new Orcamento(300);
+    $reforma = new Orcamento(490);
 
     $calculadora = new CalculadoraImpostos();
 
