@@ -20,9 +20,18 @@
     * Cria uma classe que executa o comportamento. Ex: CalculaImposto
     */
 
-    $reforma = new Orcamento(250);
+    $reforma = new Orcamento(501);
+    $reforma->addItem(new Item("tijolo", 251));
+    $reforma->addItem(new Item("tijolo", 250));
+    $reforma->addItem(new Item("LAPIS", 250));
+    $reforma->addItem(new Item("cimento", 250));
 
     $calculadora = new CalculadoraImpostos();
+
+
+    print $calculadora->calcula($reforma, new IHIT()) . "\n\r";
+
+    print $calculadora->calcula($reforma, new IKCV()) . "\n\r";
 
     print $calculadora->calcula($reforma,new ICMS());
 
@@ -39,6 +48,7 @@
     print $calculadora->calcula($reforma, new ICCC());
 
 
+
     /*
      * Chain of Responsability
      * Monta uma cadeia que vai seguindo até se encontrar uma opção que satisfaça a necessidade
@@ -48,11 +58,6 @@
     print "Descontos \n\r";
 
     $calculadoraDesconto = new CalculadoraDeDesconto();
-
-    $reforma->addItem(new Item("tijolo", 251));
-    $reforma->addItem(new Item("CANETA", 250));
-    $reforma->addItem(new Item("LAPIS", 250));
-    $reforma->addItem(new Item("cimento", 250));
 
     print "Desconto: " . $calculadoraDesconto->desconto($reforma) . "\n\r";
 
