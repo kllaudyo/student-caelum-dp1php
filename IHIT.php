@@ -11,10 +11,10 @@ class IHIT extends TemplateImpostoCondicional
     public  function deveUsarOMaximo(Orcamento $orcamento)
     {
         if(count($orcamento->getItens())>1){
-            foreach ($orcamento->getItens() as $key => $value){
-                if($this->existeItemNoOrcamento($orcamento, $key, $value->getNome())){
-                    return true;
-                }
+            $nomes = [];
+            foreach ($orcamento->getItens() as $item){
+                if(in_array($item->getNome(), $nomes)) return true;
+                $nomes[] = $item->getNome();
             }
         }
         return false;
@@ -30,11 +30,4 @@ class IHIT extends TemplateImpostoCondicional
         return $orcamento->getValor() * 0.13;
     }
 
-    private function existeItemNoOrcamento(Orcamento $orcamento, $ind, $nomeItem){
-        foreach ($orcamento->getItens() as $key => $item){
-            if($item->getNome() === $nomeItem && $key !== $ind ){
-                return true;
-            }
-        }
-    }
 }
