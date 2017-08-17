@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: claudio
- * Date: 03/08/17
- * Time: 21:39
- */
 
     function autoload($class){
         include "{$class}.php";
     }
 
     spl_autoload_register("autoload");
-
 
     /*
     * Strategy
@@ -30,6 +23,15 @@
 
     //print $calculadora->calcula($reforma, new IPI(new ImpostoAlto())) ."\n\r";
     print $calculadora->calcula($reforma, new IKCV(new ICPP()))."\n\r";
+    //$reforma->aplicaDesconto();
+    //print $reforma->getValor()."\n\r";
+    $reforma->aprova();
+    $reforma->aplicaDesconto();
+    print $reforma->getValor()."\n\r";
+    //$reforma->finaliza();
+    $reforma->aplicaDesconto();
+    print $reforma->getValor()."\n\r";
+
 
 //
 //    print $calculadora->calcula($reforma, new IHIT()) . "\n\r";
