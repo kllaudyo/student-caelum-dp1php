@@ -3,6 +3,7 @@
 class EmAprovacao implements IEstado
 {
     private $descontoAplicado = false;
+
     public function aplica(Orcamento $orcamento)
     {
         if(!$this->descontoAplicado) {
