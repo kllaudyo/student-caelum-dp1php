@@ -27,8 +27,25 @@ class NotaFiscalBuilder
         $this->acoesAoGerar = array();
     }
 
-    public function addAcao(AcoesAoGerarNota $acao){
+    public function addAcao(AcoesAoGerarNota $acao)
+    {
         array_push($this->acoesAoGerar, $acao);
+        return $this;
+    }
+
+    public function addAcoes($acoes){
+        //array_push($this->acoesAoGerar, $acao);
+        if(!is_array($acoes)){
+            throw new Exception("é necessário informar uma lista de AcoesAoGerar");
+        }
+
+        foreach ($acoes as $acao){
+            if(!$acao instanceof AcoesAoGerarNota){
+                throw new Exception("É necessário que todos os elementos da lista seja do tipo AcoesAoGerarNota");
+            }
+        }
+
+        $this->acoesAoGerar = $acoes;
         return $this;
     }
 

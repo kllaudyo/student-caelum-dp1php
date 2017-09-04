@@ -17,16 +17,19 @@ class ClientNotaFiscal
 {
     public function __construct()
     {
+
+        $acoes = array();
+        array_push($acoes, new Impressora());
+        array_push($acoes, new EnviarPorEmail());
+        array_push($acoes, new Multiplicador(0.2));
+
         $notaFiscal = (new NotaFiscalBuilder())
             ->setEmpresa("Alura")
             ->setCnpj("0987657800983")
             ->setObservacoes("Testando")
             ->addItem(new ItemDaNota("Tijolo", 250))
             ->addItem(new ItemDaNota("Cimento 2kg", 150))
-            ->addAcao(new NotaFiscalDao())
-            ->addAcao(new EnviadorDeSMS())
-            ->addAcao(new EnviarPorEmail())
-            ->addAcao(new Multiplicador(0.3))
+            ->addAcoes($acoes)
             ->build();
 
         Log::debug($notaFiscal);
