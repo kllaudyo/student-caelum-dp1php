@@ -23,12 +23,12 @@ class ClientNotaFiscal
             ->setObservacoes("Testando")
             ->addItem(new ItemDaNota("Tijolo", 250))
             ->addItem(new ItemDaNota("Cimento 2kg", 150))
-            ->setDataEmissao()
+            ->addAcao(new Impressora())
+            ->addAcao(new NotaFiscalDao())
+            ->addAcao(new EnviadorDeSMS())
             ->build();
 
-        print "<pre>";
-        print_r($notaFiscal);
-        print "</pre>";
+        Log::debug($notaFiscal);
     }
 }
 
